@@ -2,8 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
+
+    // rendering headers component here 
     return (
-        <div className='bg-base-300'>
+        <header className='bg-base-300 sticky top-0'>
             <nav className='w-full md:w-4/5 mx-auto'>
                 <div className='navbar'>
                     <div className='navbar-start'>
@@ -14,7 +16,7 @@ const Header = () => {
                     </div>
                 </div>
             </nav>
-        </div>
+        </header>
     );
 };
 
