@@ -1,8 +1,13 @@
 import axios from 'axios';
 import React from 'react';
 import { toast } from 'react-toastify';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { PlusCircleIcon } from '@heroicons/react/outline';
+import auth from '../../firebase.config';
 
 const AddTask = ({ setDoRefetch }) => {
+    // integration of react firebase hooks
+    const [user] = useAuthState(auth);
 
     // event handler for submitting add new task form
     const handleTask = async (event) => {
@@ -41,7 +46,7 @@ const AddTask = ({ setDoRefetch }) => {
                         <label className='label'>
                             <span className='label-text'>User</span>
                         </label>
-                        <input name='user' type='text' value={'mjaumi2864@gmail.com'} className='input input-bordered w-full disabled:bg-base-300 disabled:opacity-60' required readOnly disabled />
+                        <input name='user' type='text' value={user.email} className='input input-bordered w-full disabled:bg-base-300 disabled:opacity-60' required readOnly disabled />
                     </div>
                     <div className='form-control w-full mt-3'>
                         <label className='label'>
@@ -55,7 +60,10 @@ const AddTask = ({ setDoRefetch }) => {
                         </label>
                         <textarea name='description' className='textarea textarea-bordered h-32' placeholder='Task Description Here...' required></textarea>
                     </div>
-                    <button type='submit' className='btn btn-outline btn-info mt-5'>Add Task</button>
+                    <button type='submit' className='btn btn-outline btn-info mt-5'>
+                        <PlusCircleIcon className="h-5 w-5 mr-2" />
+                        Add Task
+                    </button>
                 </form>
             </div>
         </div>

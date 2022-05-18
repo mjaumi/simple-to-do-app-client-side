@@ -1,4 +1,5 @@
 import React from 'react';
+import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/outline';
 
 const CompletedModal = ({ handleCompleteTask }) => {
 
@@ -12,8 +13,14 @@ const CompletedModal = ({ handleCompleteTask }) => {
                     <h3 className='font-bold text-lg'>Are You Sure!</h3>
                     <p className='py-4'>Are you sure this task has been completed?</p>
                     <div className='modal-action'>
-                        <label htmlFor='completed-modal' className='btn btn-outline'>No</label>
-                        <button onClick={() => handleCompleteTask()} className='btn btn-success btn-outline'>Yes</button>
+                        <label htmlFor='completed-modal' className='btn btn-outline'>
+                            <XCircleIcon className="h-5 w-5 mr-2" />
+                            No
+                        </label>
+                        <button onClick={() => handleCompleteTask()} className='btn btn-success btn-outline'>
+                            <CheckCircleIcon className="h-5 w-5 mr-2" />
+                            Yes
+                        </button>
                     </div>
                 </div>
             </div>

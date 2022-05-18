@@ -1,17 +1,22 @@
 import axios from 'axios';
 import React from 'react';
 import { useQuery } from 'react-query';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import Loading from '../Loading/Loading';
 import TaskTableRow from '../TaskTableRow/TaskTableRow';
+import auth from '../../firebase.config';
 
 const TaskTable = ({ doRefetch, setDoRefetch }) => {
+    // integration of react firebase hooks
+    const [user] = useAuthState(auth);
 
     // fetching all the tasks added by user using React Query
-    const url = `https://mysterious-reaches-08632.herokuapp.com/task?email=mjaumi2864@gmail.com`
+    const url = `https://mysterious-reaches-08632.herokuapp.com/task?email=${user.email}`;
     const { data: fetchedTasks, isLoading, refetch } = useQuery('tasks', () => axios.get(url));
 
     // loading spinner if the useQuery fetching
     if (isLoading) {
-        return <p>Loading...</p>;
+        return <Loading />;
     }
 
     // doing refetch here

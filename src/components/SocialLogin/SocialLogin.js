@@ -1,35 +1,42 @@
-import React from 'react';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useSignInWithGoogle, useAuthState } from 'react-firebase-hooks/auth';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.config';
-import Loading from '../Loading/Loading';
 
-const SocialLogin = () => {
+const SocialLogin = ({ setShowSocialLoading }) => {
     // integration of react firebase hooks
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+    const [authUser] = useAuthState(auth);
 
     // integration of react hooks
     const navigate = useNavigate();
+    const location = useLocation();
 
+    const from = location.state?.from?.pathname || '/';
+
+    useEffect(() => {
+
+        if (user || authUser) {
+            toast.success('Logged In Successfully!!!');
+            navigate(from, { replace: true });
+        }
+    }, [authUser, user, navigate, from]);
+
+    // event handler for log in with google
     const handleLoginWithGoogle = async () => {
 
         await signInWithGoogle();
+        setShowSocialLoading(false);
     }
 
     if (loading) {
-        return <Loading />
+        setShowSocialLoading(true);
     }
-
-    if (user) {
-        toast.success('Logged In Successfully!!!');
-        navigate('/');
-    }
-
 
     // rendering social login component here
     return (
-        <div className='w-3/5 mx-auto'>
+        <div className='w-full md:w-3/5 mx-auto'>
             <button onClick={handleLoginWithGoogle} className='w-full btn btn-outline btn-info'>Log In with google</button>
             <div>
                 {

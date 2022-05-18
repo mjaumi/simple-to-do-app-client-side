@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import auth from '../../firebase.config';
+import { LogoutIcon, LoginIcon } from '@heroicons/react/outline';
 import { signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
@@ -29,10 +30,16 @@ const Header = () => {
                             user ?
                                 <>
                                     <p className='mr-5 font-semibold text-lg'>{user.displayName}</p>
-                                    <button onClick={handleLogout} className='btn btn-success btn-outline'>Log Out</button>
+                                    <button onClick={handleLogout} className='btn btn-success btn-outline'>
+                                        <LogoutIcon className="h-5 w-5 mr-2" />
+                                        Log Out
+                                    </button>
                                 </>
                                 :
-                                <Link to='/login' className='btn btn-success btn-outline'>Log In</Link>
+                                <Link to='/login' className='btn btn-success btn-outline'>
+                                    <LoginIcon className="h-5 w-5 mr-2" />
+                                    Log In
+                                </Link>
                         }
                     </div>
                 </div>

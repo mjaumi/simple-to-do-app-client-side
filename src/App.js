@@ -8,6 +8,7 @@ import Home from './components/Home/Home';
 import Todo from './components/Todo/Todo';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
+import RequireAuth from './components/RequireAuth/RequireAuth';
 
 function App() {
   return (
@@ -17,7 +18,11 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
-        <Route path='/todo' element={<Todo />} />
+        <Route path='/todo' element={
+          <RequireAuth>
+            <Todo />
+          </RequireAuth>
+        } />
       </Routes>
       <Footer />
       <ToastContainer />
