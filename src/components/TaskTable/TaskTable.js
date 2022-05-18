@@ -1,12 +1,12 @@
 import axios from 'axios';
 import React from 'react';
 import { useQuery } from 'react-query';
-import TaskTableRow from '../TaskTableRow';
+import TaskTableRow from '../TaskTableRow/TaskTableRow';
 
 const TaskTable = ({ doRefetch, setDoRefetch }) => {
 
     // fetching all the tasks added by user using React Query
-    const url = `http://localhost:5000/task?email=mjaumi2864@gmail.com`
+    const url = `https://mysterious-reaches-08632.herokuapp.com/task?email=mjaumi2864@gmail.com`
     const { data: fetchedTasks, isLoading, refetch } = useQuery('tasks', () => axios.get(url));
 
     // loading spinner if the useQuery fetching

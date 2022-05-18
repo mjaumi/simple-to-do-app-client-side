@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import CompletedModal from './CompletedModal/CompletedModal';
-import DeleteModal from './DeleteModal/DeleteModal';
+import CompletedModal from '../CompletedModal/CompletedModal';
+import DeleteModal from '../DeleteModal/DeleteModal';
 
 const TaskTableRow = ({ task, index, refetch }) => {
     // destructuring the props
@@ -14,7 +14,7 @@ const TaskTableRow = ({ task, index, refetch }) => {
 
     // event handler for deleting a task from database
     const handleDeleteTask = async () => {
-        const url = `http://localhost:5000/task/${_id}`;
+        const url = `https://mysterious-reaches-08632.herokuapp.com/task/${_id}`;
         const deleteResult = await axios.delete(url);
 
         if (deleteResult.status === 200) {
@@ -27,7 +27,7 @@ const TaskTableRow = ({ task, index, refetch }) => {
     }
 
     const handleCompleteTask = async () => {
-        const url = `http://localhost:5000/task/${_id}`;
+        const url = `https://mysterious-reaches-08632.herokuapp.com/task/${_id}`;
 
         const updatedComplete = {
             completed: true

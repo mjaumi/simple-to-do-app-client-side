@@ -19,7 +19,7 @@ const AddTask = ({ setDoRefetch }) => {
             completed: false
         }
 
-        const result = await axios.post('http://localhost:5000/task', task);
+        const result = await axios.post('https://mysterious-reaches-08632.herokuapp.com/task', task);
 
         if (result.status === 200) {
             toast.success('Task Added Successfully!!!');
