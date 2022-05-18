@@ -41,6 +41,7 @@ const TaskTable = ({ doRefetch, setDoRefetch }) => {
                                 fetchedTasks?.data?.map((task, index) => <TaskTableRow
                                     key={task._id}
                                     index={index}
+                                    refetch={refetch}
                                     task={task}
                                 />)
                             }
