@@ -26,27 +26,34 @@ const TaskTable = ({ doRefetch, setDoRefetch }) => {
             <h3 className='md:text-left text-3xl font-semibold'>My Tasks</h3>
             <div className='md:w-[90%] mx-auto border border-[#a6adba] p-5 mt-10 rounded-2xl bg-base-200'>
                 <div className='overflow-x-auto'>
-                    <table className='table w-full text-center'>
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Completed</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                fetchedTasks?.data?.map((task, index) => <TaskTableRow
-                                    key={task._id}
-                                    index={index}
-                                    refetch={refetch}
-                                    task={task}
-                                />)
-                            }
-                        </tbody>
-                    </table>
+                    {
+                        fetchedTasks?.data.length !== 0 ?
+                            <table className='table w-full text-center'>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Completed</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+
+                                        fetchedTasks?.data?.map((task, index) => <TaskTableRow
+                                            key={task._id}
+                                            index={index}
+                                            refetch={refetch}
+                                            task={task}
+                                        />)
+
+                                    }
+                                </tbody>
+                            </table>
+                            :
+                            <h3 className='font-bold text-4xl my-5 opacity-50'>No Tasks Available Yet!</h3>
+                    }
                 </div>
             </div>
 
