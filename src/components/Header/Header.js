@@ -10,7 +10,7 @@ const Header = () => {
                         <Link to='/' className='btn btn-ghost normal-case text-xl'>TO-DO App</Link>
                     </div>
                     <div className='navbar-end'>
-                        <Link to='/login' className='btn btn-outline'>Log In</Link>
+                        <Link to='/login' className='btn btn-success btn-outline'>Log In</Link>
                     </div>
                 </div>
             </nav>
